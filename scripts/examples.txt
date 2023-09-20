@@ -1,0 +1,35 @@
+1) loop_svinet.sh
+    signature:    ./loop_svinet.sh <nn> <ll> <mode> <pp> <kk> <seeds> # <desc> <bp> <task> <metric> <key>
+    example:      ./loop_svinet.sh 512 3 ca2 p20-sample 7 500
+
+2) run_svinet.sh
+    signature:    ./run_svinet.sh <nn> <ll> <mode> <pp> <kk> # <key> <desc> <task>
+    example:      ./run_svinet.sh 512 3 ca2 p20-sample 7
+
+3) run_group.sh
+    signature:    ./run_group.sh <nn> <ll> <mode> <pp> <kk> # <desc> <task>
+    example:      ./run_group.sh 512 3 ca2 p20-sample -1
+
+4) run_network.sh
+    signature:    ./run_network.sh <nn> <ll> <mode> # <desc> <task>
+    example:      ./run_network.sh 512 3 ca2
+
+5) loop_findk.sh
+    signature:    ./loop_findk.sh <nn> <ll> <pp> <mode> <task> <metric> <key>
+    example:      ./loop_findk.sh 512 3 p*.txt * * pearson *
+
+6) run_register.sh
+    signature:    ./run_register.sh <nn> <ll> <cutoff> <thres> <anat> <seeds>
+    example:      ./run_register.sh 512 3 0 0.2 false 10
+
+7) run_bootstrap.sh
+    signature:    ./run_bootstrap.sh <nn> <ll> <kk> <pp> <num> <njobs> <mode>
+    example:      ./run_bootstrap.sh 512 3 -1 p20-sample 1000000 -1 ca2
+
+8) run_lfr.sh
+    signature:    ./run_lfr.sh <kind>
+    example:      ./run_lfr.sh bo
+
+9) loop_svinet_lfr.sh
+    signature:    ./loop_svinet_lfr.sh <kind> <seeds> <k>
+    example:      ./loop_svinet_lfr.sh bo 3 read
