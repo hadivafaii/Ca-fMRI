@@ -1,9 +1,9 @@
 # Welcome!
 
-This repository contains code for reproducing results in the paper "*Multimodal measures of spontaneous brain activity reveal both common and divergent patterns of cortical functional organization*" (DOI: [10.21203/rs.3.rs-2823802/v1](https://www.researchsquare.com/article/rs-2823802/v1)).
+This repository contains code for reproducing results in the paper "*Multimodal measures of spontaneous brain activity reveal both common and divergent patterns of cortical functional organization*" (DOI: [10.21203/rs.3.rs-2823802/v1](https://www.researchsquare.com/article/rs-2823802/v1)). If you have any questions, feel free to open an issue here or shoot me an [email](mailto:vafaii@umd.edu).
 
 ## Introdution
-We used SVINET [1], a publicly available open-source software, to perform overlapping network analysis. This algorithm was introduced in 2013 and has since been thoroughly tested and validated in various types of networks, including human fMRI networks, by our team [2] as well as others [3]. Additionally, we make use of Python-based scientific computing libraries such as Numpy and SciPy for basic operations such as computing Pearson correlation, cosine similarity, averaging, etc.
+This code base uses SVINET [1], a publicly available open-source software, to perform overlapping network analysis applied to a simultaneous dataset of cortex-wide Ca<sup>2+</sup> imaging combined with fMRI in mice [2]. This algorithm was introduced in 2013 and has since been thoroughly tested and validated in various types of networks, including human fMRI networks, by our team [3] as well as others [4]. Additionally, we make extensive use of Python-based scientific computing libraries such as Numpy and SciPy for basic operations such as computing Pearson correlation, cosine similarity, averaging, etc.
 
 ## Quick start guide
 The following object classes were used in the main analysis. Full documentation to follow.
@@ -11,14 +11,14 @@ The following object classes were used in the main analysis. Full documentation 
 - SVINET class (```analysis/svinet.py```) to load overlapping communities (output from the main algorithm) and align them across random seeds for each individual run. Corresponding script: ```scripts/run_svinet.sh```
 - Group class (```analysis/group.py```) to perform group analysis. Combines all runs by aligning and averaging them which yields the group results. Corresponding script: ```scripts/run_group.sh```
 - Bootstrap class (```analysis/bootstrap.py```) to perform various statistical analysis on the data. Corresponding script: ```scripts/run_bootstrap.sh```
-- LFR analysis (```analysis/lfr.py```) to perform community analysis on synthetic LFR graphs with known ground truths [4]. Corresponding script: ```scripts/run_lfr.sh```
+- LFR analysis (```analysis/lfr.py```) to perform community analysis on synthetic LFR graphs with known ground truths [5]. Corresponding script: ```scripts/run_lfr.sh```
 
 Please see ```scripts/examples.txt``` for a demonstration of how to execute these scripts.
 
 ## Additional modules
-- Allen class (```register/atlas.py```) is a wrapper around the [Allen SDK](https://allensdk.readthedocs.io/en/latest/) package. Used to extract brain masks, templates, and other type of information available within the CCFv3 common space [5].
-- Parcellation class (```register/parcellation.py```) creates a spatially homogeneous parcellation of the mouse cortex. Please refer to ROI definition section in Methods.
-- Register class (```register/register.py```) is used to co-register individual mouse brains to the CCFv3 common space. Corresponding script: ```scripts/run_register.sh```
+- Allen class (```register/atlas.py```) is a wrapper around the [Allen SDK](https://allensdk.readthedocs.io/en/latest/) package. Used to extract brain masks, templates, and other type of information available within the CCFv3 common space [6].
+- Parcellation class (```register/parcellation.py```) creates a spatially homogeneous parcellation of the mouse cortex within CCFv3. Please refer to Methods section in ROI definition.
+- Register class (```register/register.py```) is used to co-register individual mouse brains to the CCFv3 common space, bring the ROIs to each individual's anatomical space, and extract functional data per ROI. Corresponding script: ```scripts/run_register.sh```
 
 ## Installation guide
 The present codebase is built as a wrapper around SVINET and uses standard Python libraries. It has been tested on Ubuntu 22.04.2 LTS. For installation guide, please refer to the original sources:
@@ -31,14 +31,15 @@ The present codebase is built as a wrapper around SVINET and uses standard Pytho
 - LFR graphs: https://www.santofortunato.net/resources
     - package 1, undirected and unweighted graphs with overlapping communities
 
-Typical install time for these packages is in the order of several minutes.
+Typical installing time for these packages is in the order of several minutes.
 
 ## Documentation
 Coming soon 🚧
 
 ## References:
 1. Gopalan, Prem K., and David M. Blei. "Efficient discovery of overlapping communities in massive networks." PNAS 110, no. 36 (2013): 14534-14539.
-2. Najafi, Mahshid, et al. "Overlapping communities reveal rich structure in large-scale brain networks during rest and task conditions." Neuroimage 135 (2016): 92-106.
-3. Cookson, Savannah L., and Mark D’Esposito. "Evaluating the reliability, validity, and utility of overlapping networks: Implications for network theories of cognition." Human Brain Mapping 44.3 (2023): 1030-1045.
-4. Lancichinetti, A. and Fortunato, S., 2009. "Benchmarks for testing community detection algorithms on directed and weighted graphs with overlapping communities". Physical Review E, 80(1), p.016118.
-5. Wang, Q., et al. "The Allen mouse brain common coordinate framework: a 3D reference atlas." Cell 181.4 (2020): 936-953.
+2. Lake, Evelyn MR, et al. "Simultaneous cortex-wide fluorescence Ca<sup>2+</sup> imaging and whole-brain fMRI." Nature methods 17.12 (2020): 1262-1271.
+3. Najafi, Mahshid, et al. "Overlapping communities reveal rich structure in large-scale brain networks during rest and task conditions." Neuroimage 135 (2016): 92-106.
+4. Cookson, Savannah L., and Mark D’Esposito. "Evaluating the reliability, validity, and utility of overlapping networks: Implications for network theories of cognition." Human Brain Mapping 44.3 (2023): 1030-1045.
+5. Lancichinetti, A. and Fortunato, S., 2009. "Benchmarks for testing community detection algorithms on directed and weighted graphs with overlapping communities". Physical Review E, 80(1), p.016118.
+6. Wang, Q., et al. "The Allen mouse brain common coordinate framework: a 3D reference atlas." Cell 181.4 (2020): 936-953.
